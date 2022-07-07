@@ -3,7 +3,7 @@ object FPrincipal: TFPrincipal
   Top = 0
   Caption = 'FPrincipal'
   ClientHeight = 440
-  ClientWidth = 524
+  ClientWidth = 610
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -41,10 +41,17 @@ object FPrincipal: TFPrincipal
     Height = 13
     Caption = #201'pocas'
   end
+  object Label5: TLabel
+    Left = 208
+    Top = 91
+    Width = 67
+    Height = 13
+    Caption = 'Maior Entrada'
+  end
   object DBGrid1: TDBGrid
-    Left = 32
+    Left = 8
     Top = 152
-    Width = 281
+    Width = 353
     Height = 241
     DataSource = DataSourceDados
     TabOrder = 0
@@ -82,6 +89,32 @@ object FPrincipal: TFPrincipal
       end
       item
         Expanded = False
+        FieldName = 'w'
+        Title.Alignment = taCenter
+        Title.Caption = 'W'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 40
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'z'
+        Title.Alignment = taCenter
+        Title.Caption = 'Z'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -11
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 40
+        Visible = True
+      end
+      item
+        Expanded = False
         FieldName = 'cromossomo'
         Title.Alignment = taCenter
         Title.Caption = 'Cromossomo'
@@ -107,9 +140,9 @@ object FPrincipal: TFPrincipal
       end>
   end
   object DBGrid2: TDBGrid
-    Left = 319
+    Left = 381
     Top = 152
-    Width = 194
+    Width = 218
     Height = 129
     DataSource = DataSourceAux
     TabOrder = 1
@@ -146,8 +179,8 @@ object FPrincipal: TFPrincipal
       end>
   end
   object BtnComecar: TButton
-    Left = 408
-    Top = 407
+    Left = 432
+    Top = 335
     Width = 97
     Height = 25
     Caption = 'Come'#231'ar'
@@ -168,7 +201,7 @@ object FPrincipal: TFPrincipal
     Width = 49
     Height = 21
     TabOrder = 4
-    Text = '4'
+    Text = '8'
   end
   object EdtTaxaMutacao: TEdit
     Left = 456
@@ -176,7 +209,7 @@ object FPrincipal: TFPrincipal
     Width = 49
     Height = 21
     TabOrder = 5
-    Text = '12'
+    Text = '15'
   end
   object EdtEpocas: TEdit
     Left = 104
@@ -184,14 +217,23 @@ object FPrincipal: TFPrincipal
     Width = 49
     Height = 21
     TabOrder = 6
-    Text = '4'
+    Text = '8'
+  end
+  object EdtEntrada: TEdit
+    Left = 280
+    Top = 88
+    Width = 49
+    Height = 21
+    TabOrder = 7
+    Text = '6'
   end
   object ClientDados: TClientDataSet
     PersistDataPacket.Data = {
-      790000009619E0BD010000001800000005000000000003000000790001780400
-      010000000000017904000100000000000A63726F6D6F73736F6D6F0100490000
-      00010005574944544802000200140009726573756C7461646F04000100000000
-      00056D75746F7501004900000001000557494454480200020001000000}
+      8D0000009619E0BD0100000018000000070000000000030000008D0001780400
+      0100000000000179040001000000000001770400010000000000017A04000100
+      000000000A63726F6D6F73736F6D6F0100490000000100055749445448020002
+      00140009726573756C7461646F0400010000000000056D75746F750100490000
+      0001000557494454480200020001000000}
     Active = True
     Aggregates = <>
     FieldDefs = <
@@ -201,6 +243,14 @@ object FPrincipal: TFPrincipal
       end
       item
         Name = 'y'
+        DataType = ftInteger
+      end
+      item
+        Name = 'w'
+        DataType = ftInteger
+      end
+      item
+        Name = 'z'
         DataType = ftInteger
       end
       item
@@ -220,8 +270,8 @@ object FPrincipal: TFPrincipal
     IndexDefs = <>
     Params = <>
     StoreDefs = True
-    Left = 224
-    Top = 96
+    Left = 160
+    Top = 216
     object ClientDadosx: TIntegerField
       FieldName = 'x'
     end
@@ -238,11 +288,17 @@ object FPrincipal: TFPrincipal
       FieldName = 'mutou'
       Size = 1
     end
+    object ClientDadosw: TIntegerField
+      FieldName = 'w'
+    end
+    object ClientDadosz: TIntegerField
+      FieldName = 'z'
+    end
   end
   object DataSourceDados: TDataSource
     DataSet = ClientDados
-    Left = 312
-    Top = 96
+    Left = 208
+    Top = 216
   end
   object ClientAux: TClientDataSet
     PersistDataPacket.Data = {
@@ -264,8 +320,8 @@ object FPrincipal: TFPrincipal
     IndexDefs = <>
     Params = <>
     StoreDefs = True
-    Left = 472
-    Top = 96
+    Left = 432
+    Top = 192
     object StringField1: TStringField
       FieldName = 'cromossomo'
     end
@@ -275,7 +331,7 @@ object FPrincipal: TFPrincipal
   end
   object DataSourceAux: TDataSource
     DataSet = ClientAux
-    Left = 408
-    Top = 96
+    Left = 472
+    Top = 208
   end
 end

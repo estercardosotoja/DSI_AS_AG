@@ -31,10 +31,14 @@ type
     ClientDadosmutou: TStringField;
     EdtEpocas: TEdit;
     Label4: TLabel;
+    ClientDadosw: TIntegerField;
+    ClientDadosz: TIntegerField;
+    Label5: TLabel;
+    EdtEntrada: TEdit;
     procedure BtnComecarClick(Sender: TObject);
   private
     { Private declarations }
-    function Objetivo(Xvar, Yvar: Integer): double;
+    function Objetivo(Xvar, Yvar, Wvar, Zvar: Integer): double;
 
     procedure PreencherClient;
     procedure Corte;
@@ -97,7 +101,9 @@ begin
     ClientDados.Edit;
     ClientDados.FieldByName('x').AsInteger:= BinToInt(Copy(ClientDados.FieldByName('cromossomo').AsString , 1, 3));
     ClientDados.FieldByName('y').AsInteger:= BinToInt(Copy(ClientDados.FieldByName('cromossomo').AsString , 4, 3));
-    ClientDados.FieldByName('resultado').AsFloat:= Objetivo(ClientDados.FieldByName('x').AsInteger, ClientDados.FieldByName('y').AsInteger);
+    ClientDados.FieldByName('w').AsInteger:= BinToInt(Copy(ClientDados.FieldByName('cromossomo').AsString , 7, 3));
+    ClientDados.FieldByName('z').AsInteger:= BinToInt(Copy(ClientDados.FieldByName('cromossomo').AsString , 10, 3));
+    ClientDados.FieldByName('resultado').AsFloat:= Objetivo(ClientDados.FieldByName('x').AsInteger, ClientDados.FieldByName('y').AsInteger, ClientDados.FieldByName('w').AsInteger, ClientDados.FieldByName('z').AsInteger);
     ClientDados.Post;
 
     ClientDados.Next;
@@ -127,13 +133,13 @@ begin
     Result := Result + '0';
 end;
 
-function TFPrincipal.Objetivo(Xvar, Yvar: Integer): double;
+function TFPrincipal.Objetivo(Xvar, Yvar, Wvar, Zvar: Integer): double;
 var
-  XX, YY: double;
+  ZZ, YY: double;
 begin
-  XX:= Power(Xvar - 2.0, 2.0);
-  YY:= Power(Yvar - 3.0, 2.0);
-  Result:= 2.0 - XX - YY;
+  ZZ:= Power(Zvar, 3.0);
+  YY:= Power(Yvar, 2.0);
+  Result:= 5*Xvar + YY + Wvar + ZZ - 185;
 end;
 
 procedure TFPrincipal.PreencherClient;
@@ -146,10 +152,12 @@ begin
   while i < 10 do
   begin
     ClientDados.Append;
-    ClientDados.FieldByName('x').AsInteger:= Random(7);
-    ClientDados.FieldByName('y').AsInteger:= Random(7);
-    ClientDados.FieldByName('cromossomo').AsString:= IntToBin1(ClientDados.FieldByName('x').AsInteger, 2) + IntToBin1(ClientDados.FieldByName('y').AsInteger, 2);
-    ClientDados.FieldByName('resultado').AsFloat:= Objetivo(ClientDados.FieldByName('x').AsInteger, ClientDados.FieldByName('y').AsInteger);
+    ClientDados.FieldByName('x').AsInteger:= Random(StrToInt(EdtEntrada.Text));
+    ClientDados.FieldByName('y').AsInteger:= Random(StrToInt(EdtEntrada.Text));
+    ClientDados.FieldByName('w').AsInteger:= Random(StrToInt(EdtEntrada.Text));
+    ClientDados.FieldByName('z').AsInteger:= Random(StrToInt(EdtEntrada.Text));
+    ClientDados.FieldByName('cromossomo').AsString:= IntToBin1(ClientDados.FieldByName('x').AsInteger, 2) + IntToBin1(ClientDados.FieldByName('y').AsInteger, 2) + IntToBin1(ClientDados.FieldByName('w').AsInteger, 2) + IntToBin1(ClientDados.FieldByName('z').AsInteger, 2);
+    ClientDados.FieldByName('resultado').AsFloat:= Objetivo(ClientDados.FieldByName('x').AsInteger, ClientDados.FieldByName('y').AsInteger, ClientDados.FieldByName('w').AsInteger, ClientDados.FieldByName('z').AsInteger);
     ClientDados.Post;
 
     Inc(i);
