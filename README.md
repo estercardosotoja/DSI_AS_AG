@@ -118,7 +118,7 @@ Alterando o valor de **Taxa de Mutação** para **12** e mantendo os demais par�
 
 ![ ](img/print13.png)
 
-Neste caso, diminuímos a **Taxa de Mutação** e o sistema entrou em loop e encerrando a execução do programa. No caso da taxa de mutação ter o valor 12 entra em loop porque temos a população com 10 cromossomos.
+Neste caso, diminuímos a **Taxa de Mutação** e o sistema entrou em loop e encerrando a execução do programa. No caso da taxa de mutação ter o valor 12 entra em loop porque somando todos os cromossomos temos 120 genes. A taxa de mutação é a cada 12 genes e 1 mutação, sendo assim um filho não pode receber 2 mutações, (exclusivamente no nosso caso), isso faz com que toda a população de 10 indivíduos tenham mutação. Devido a todos terem mutação e o programa estar se baseando em apenas 1 mutação por indivíduo então ele entra em loop procurando alguém que não tenha sido mutado ainda e acaba encerrando programa.
 
 ### Conclusão
 
